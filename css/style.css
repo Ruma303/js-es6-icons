@@ -12,7 +12,7 @@
 .header-title h1 {
     color: rgb(84, 172, 216);
     font-size: 3rem;
-    padding-top: 1rem;
+    padding-top: .8rem;
     padding-left: 1rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -52,5 +52,16 @@
     height: calc((100% / 4) - (20rem / 4));
     border-radius: 20px;
     border: none;
-    background-color: blue;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
 }
+
+/* classe per le icone font awesome */
+i {
+    scale: 200%;
+}
+

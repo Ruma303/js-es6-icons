@@ -2,6 +2,7 @@ const select = document.querySelector('#select');
 const mainContainer = document.querySelector('.main-container');
 const card = document.querySelector('.card');
 
+
 const data = [
 	{
 		name: 'cat',
@@ -119,8 +120,23 @@ const data = [
 
 //Creazione card per le ogni oggetto
 data.forEach((element) => {
+    //Creazione del div
     const eleBox = document.createElement('div');
     eleBox.classList.add('card');
     mainContainer.append(eleBox);
+
+    //Creazione icone in ogni box
+    const eleIco = document.createElement('i');
+    //aggiorno le classi del tag i aggiungendo le classi delle icone
+    eleIco.className = `fa-solid ${element.prefix}${element.name}` 
+    
+    //creare il testo per ogni box
+
+    eleBox.append(eleIco);
+
+
+    // eleIco.innerHTML = `${element.name}`
 })
+
+
 
