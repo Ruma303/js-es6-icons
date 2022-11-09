@@ -1,6 +1,8 @@
 const select = document.querySelector('#select');
 const mainContainer = document.querySelector('.main-container');
 const card = document.querySelector('.card');
+const option = document.querySelectorAll('option');
+
 
 
 const data = [
@@ -136,6 +138,49 @@ data.forEach((element) => {
     const eleTitle = document.createElement('h3');
     eleTitle.innerHTML = `${element.name}`
     eleBox.append(eleTitle);
-})
+    }
+);
 
-//Creazione options
+//Visualizza solo le icone per tipo
+
+//prova a creare altri 3 array con filter, e in base all'opzione scelta col click dai la classe visible alle cards
+let eleType = option.values;
+const typeAll = [], typeAnimal = [], typeVegetable = [], typeUser = [];
+
+//Creo l'array per tutti gli elementi basati solo sul tipo
+data.forEach((element) => {
+    typeAll.push(element.type);
+    }
+)
+console.log(typeAll)
+
+//Pushare type diversi dentro array diverse
+for (let i = 0; i < data.length; i++) {
+    if (data[i].type == 'animal') {
+        typeAnimal.push(data[i].type);
+    } else if (data[i].type == 'vegetable') {
+        typeVegetable.push(data[i].type);
+    } else if (data[i].type == 'user') {
+        typeUser.push(data[i].type);
+    }
+}
+console.log(typeAnimal);
+console.log(typeVegetable);
+console.log(typeUser);
+
+
+
+//in base ai casi pushi nelle nuove array divise per tipo
+
+
+
+
+    
+
+
+// data.forEach((element.type == eleType)
+//     if (eleType == 'All') {
+
+//     }
+// )
+// //numero di cards variabile per tipo selezionato
