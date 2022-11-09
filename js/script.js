@@ -117,3 +117,10 @@ const data = [
 	}
 ];
 
+//Creazione card per le ogni oggetto
+data.forEach((element) => {
+    const eleBox = document.createElement('div');
+    eleBox.classList.add('card');
+    mainContainer.append(eleBox);
+})
+
