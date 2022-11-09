@@ -129,10 +129,12 @@ data.forEach((element) => {
     const eleIco = document.createElement('i');
     //aggiorno le classi del tag i aggiungendo le classi delle icone
     eleIco.className = `fa-solid ${element.prefix}${element.name}` 
-    
-    //creare il testo per ogni box
-
     eleBox.append(eleIco);
+    
+    //creare il nome per ogni icona
+    const eleTitle = document.createElement('h3');
+    eleTitle.innerHTML = `${element.name}`
+    eleBox.append(eleTitle);
 
 
     // eleIco.innerHTML = `${element.name}`
