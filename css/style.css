@@ -69,7 +69,11 @@
     font-family: 'Roboto';
     text-transform: uppercase;
 }
-
+/* 
 .visible {
     display: block;
+} */
+
+.hidden {
+    display: none;
 }

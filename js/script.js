@@ -3,8 +3,6 @@ const mainContainer = document.querySelector('.main-container');
 const card = document.querySelector('.card');
 const option = document.querySelectorAll('option');
 
-
-
 const data = [
 	{
 		name: 'cat',
@@ -138,21 +136,23 @@ data.forEach((element) => {
     const eleTitle = document.createElement('h3');
     eleTitle.innerHTML = `${element.name}`
     eleBox.append(eleTitle);
+
+    // nascondere tutte le celle
+    // eleBox.classList.add('hidden');
     }
 );
 
 //Visualizza solo le icone per tipo
 
 //prova a creare altri 3 array con filter, e in base all'opzione scelta col click dai la classe visible alle cards
-let eleType = option.values;
 const typeAll = [], typeAnimal = [], typeVegetable = [], typeUser = [];
 
 //Creo l'array per tutti gli elementi basati solo sul tipo
 data.forEach((element) => {
     typeAll.push(element.type);
     }
-)
-console.log(typeAll)
+);
+console.log(typeAll);
 
 //Pushare type diversi dentro array diverse
 for (let i = 0; i < data.length; i++) {
@@ -163,14 +163,43 @@ for (let i = 0; i < data.length; i++) {
     } else if (data[i].type == 'user') {
         typeUser.push(data[i].type);
     }
-}
+};
 console.log(typeAnimal);
 console.log(typeVegetable);
 console.log(typeUser);
 
 
+//Mostrare le icone con i value del select
+select.addEventListener('click', function() {
+        let eleType = option.values;
 
-//in base ai casi pushi nelle nuove array divise per tipo
+        for (let i = 0; i < typeAll.length; i++) {
+        if (typeAll[i] == eleType) {
+            typeAll[i].classList.remove('hidden');
+            typeAnimal[i].classList.add('hidden');
+            typeVegetable[i].classList.add('hidden');
+            typeUser[i].classList.add('hidden');
+        } else if (typeAnimal[i] == eleType) {
+            typeAnimal[i].classList.remove('hidden');
+            typeAll[i].classList.add('hidden');
+            typeVegetable[i].classList.add('hidden');
+            typeUser[i].classList.add('hidden');
+        } else if (typeVegetable[i] == eleType) {
+            typeVegetable[i].classList.remove('hidden');
+            typeAll[i].classList.add('hidden');
+            typeAnimal[i].classList.add('hidden');
+            typeUser[i].classList.add('hidden');
+        } else if (typeUser[i] == eleType) {
+            typeUser[i].classList.remove('hidden');
+            typeAll[i].classList.add('hidden');
+            typeAnimal[i].classList.add('hidden');
+            typeVegetable[i].classList.add('hidden');
+            }
+        }
+    }
+);
+
+
 
 
 
