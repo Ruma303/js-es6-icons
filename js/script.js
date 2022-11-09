@@ -5,6 +5,7 @@ const option = document.querySelectorAll('option');
 const randomNumber = [];
 hexaFunction();
 const hexacode = `#${randomNumber.join("")}`;
+console.log(hexacode)
 const data = [
 	{
 		name: 'cat',
@@ -121,7 +122,6 @@ const data = [
 ];
 
 
-console.log(hexacode)
 //Creazione card per le ogni oggetto
 data.forEach((element) => {
     //Creazione del div
@@ -212,24 +212,25 @@ select.addEventListener('click', function() {
 function getRandom(max, min) {
 	return Math.floor(Math.random() * (max - min  + 1)) + 1;
 }
-function hexaFunction() {
+
 //Creazione numeri e lettere
-for (let i=0; i<6; i++) {
-	let hexNum = getRandom(15, 0)
-	if (hexNum <10) {
-		randomNumber.push(getRandom(15, 0));
-	} else  if (hexNum == 10 ){
-		hexNum = 'A'; randomNumber.push(hexNum);
-	} else  if (hexNum == 11 ){
-		hexNum = 'B'; randomNumber.push(hexNum);
-	} else  if (hexNum == 12 ){
-		hexNum = 'C'; randomNumber.push(hexNum);
-	} else  if (hexNum == 13 ){
-		hexNum = 'D'; randomNumber.push(hexNum);
-	} else  if (hexNum == 14 ){
-		hexNum = 'E'; randomNumber.push(hexNum);
-	} else  if (hexNum == 15 ){
-		hexNum = 'F'; randomNumber.push(hexNum);
+function hexaFunction() {
+	for (let i=0; i<6; i++) {
+		let hexNum = getRandom(15, 0) //genera numero da 0 a 15
+		if (hexNum <10) { //se da 0 a 9, lo pusha nell'array
+			randomNumber.push(getRandom(15, 0));
+		} else if (hexNum == 10 ){ //dal 10 al 15 prima cambia
+			hexNum = 'A'; randomNumber.push(hexNum);
+		} else if (hexNum == 11 ){
+			hexNum = 'B'; randomNumber.push(hexNum);
+		} else if (hexNum == 12 ){
+			hexNum = 'C'; randomNumber.push(hexNum);
+		} else if (hexNum == 13 ){
+			hexNum = 'D'; randomNumber.push(hexNum);
+		} else if (hexNum == 14 ){
+			hexNum = 'E'; randomNumber.push(hexNum);
+		} else if (hexNum == 15 ){
+			hexNum = 'F'; randomNumber.push(hexNum);
+		}
 	}
-}
 }
