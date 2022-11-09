@@ -136,9 +136,6 @@ data.forEach((element) => {
     const eleTitle = document.createElement('h3');
     eleTitle.innerHTML = `${element.name}`
     eleBox.append(eleTitle);
-
-    
 })
 
-
-
+//Creazione options
