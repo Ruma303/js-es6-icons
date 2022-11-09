@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+.header-title {
+    width: 100vw;
+    height: 4rem;
+}
+
+.header-title h1 {
+    color: rgb(84, 172, 216);
+    font-size: 3rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.header-select {
+    width: 100vw;
+    height: 4rem;
+    background-color: rgb(86, 173, 216);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.header-select h2 {
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    color: white;
+}
+
+#select {
+    height: fit-content;
+}
+
+.main-container {
+    background-color: rgb(220, 220, 220);
+    height: 92vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    margin: auto;
+}
+
+.card {
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+}
