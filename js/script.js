@@ -142,9 +142,7 @@ data.forEach((element) => {
     }
 );
 
-//Visualizza solo le icone per tipo
-
-//prova a creare altri 3 array con filter, e in base all'opzione scelta col click dai la classe visible alle cards
+//Creo array per tipo
 const typeAll = [], typeAnimal = [], typeVegetable = [], typeUser = [];
 
 //Creo l'array per tutti gli elementi basati solo sul tipo
@@ -176,9 +174,9 @@ select.addEventListener('click', function() {
         for (let i = 0; i < typeAll.length; i++) {
         if (typeAll[i] == eleType) {
             typeAll[i].classList.remove('hidden');
-            typeAnimal[i].classList.add('hidden');
-            typeVegetable[i].classList.add('hidden');
-            typeUser[i].classList.add('hidden');
+            // typeAnimal[i].classList.add('hidden');
+            // typeVegetable[i].classList.add('hidden');
+            // typeUser[i].classList.add('hidden');
         } else if (typeAnimal[i] == eleType) {
             typeAnimal[i].classList.remove('hidden');
             typeAll[i].classList.add('hidden');
@@ -199,17 +197,10 @@ select.addEventListener('click', function() {
     }
 );
 
+//BONUS 1
+//Crea funzione genera numeri random da 0 a 15, ma devono andare da 0 a 9 e poi da A a F 
 
-
-
-
-
-    
-
-
-// data.forEach((element.type == eleType)
-//     if (eleType == 'All') {
-
-//     }
-// )
-// //numero di cards variabile per tipo selezionato
+/*const randomColor = [];
+function random() {
+    Math.floor(Math.random() * 15) + 0;
+}*/
