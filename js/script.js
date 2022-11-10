@@ -1,11 +1,11 @@
-const select = document.querySelector('#select');
+const eleSelect = document.querySelector('#select');
 const mainContainer = document.querySelector('.main-container');
 const card = document.querySelector('.card');
 const option = document.querySelectorAll('option');
-const randomNumber = [];
-hexaFunction();
-const hexacode = `#${randomNumber.join("")}`;
-console.log(hexacode)
+
+
+
+
 const data = [
 	{
 		name: 'cat',
@@ -121,9 +121,30 @@ const data = [
 	}
 ];
 
+renderIcons(data, mainContainer); //parametri in quanto voglio riutilizzare la funzione
+populateSelect(data, eleSelect); 
+hexaFunction();
 
+
+
+//Mostrare le icone con i value del select
+eleSelect.addEventListener('change', function()  {
+	const selectedType = this.value;
+	//filtrare array
+	if (selectedType!== ''){
+		arrIconsFiltered = arrFiltrato.filter(element => element.type === selectedType)
+	} else {
+		arrIconsFiltered = data;
+	}
+	console.log(arrIconsFiltered)
+	//renderizzo array icone filtrate
+	renderIcons(arrIconsFiltered, mainContainer)
+})
 //Creazione card per le ogni oggetto
-data.forEach((element) => {
+function renderIcons(arrData, mainContainer){
+	// mainContainer.innerHTML = '';
+	arrData.forEach(element => 
+		{
     //Creazione del div
     const eleBox = document.createElement('div');
     eleBox.classList.add('card');
@@ -132,93 +153,48 @@ data.forEach((element) => {
     //Creazione icone in ogni box
     const eleIco = document.createElement('i');
     //aggiorno le classi del tag i aggiungendo le classi delle icone
-    eleIco.className = `fa-solid ${element.prefix}${element.name}`
-	eleIco.style.color = `${hexacode}` //Colore per ogni icona randomico
+    eleIco.className = `${element.family} ${element.prefix}${element.name}`
+	//eleIco.style.color = `${hexacode}` //Colore per ogni icona randomico
     eleBox.append(eleIco); //appendo il tag i al container genitore
     
     //creare il nome per ogni icona
     const eleTitle = document.createElement('h3');
     eleTitle.innerHTML = `${element.name}`
     eleBox.append(eleTitle);
-
-    // nascondere tutte le celle
-    // eleBox.classList.add('hidden');
-
     }
-);
+)};
 
-//Creo array per tipo
-const typeAll = [], typeAnimal = [], typeVegetable = [], typeUser = [];
+//Creo un'array per ogni tipo di elementi trovati nell'oggetto
+function populateSelect(data, eleSelect) {
+	const arrTypes = []//popoliamo l'array per ogni tipo di obj che troviamo dinamicamente
+	data.forEach(element => {
+		//se il tipo NON è incluso, pushiamo
+		if (!data.includes(element.type)) {
+			data.push(element.type);
+		}
+	});
+}
+//BONUS 2 aggiungere le option per ciascun tipo
+data.forEach(type=> eleSelect.innerHTML = `<option value="${type}">${type}</option>`)
 
-//Creo l'array per tutti gli elementi basati solo sul tipo
-data.forEach((element) => {
-    typeAll.push(element.type);
-    }
-);
-console.log(typeAll);
-
-//Pushare type diversi dentro array diverse
-for (let i = 0; i < data.length; i++) {
-    if (data[i].type == 'animal') {
-        typeAnimal.push(data[i].type);
-    } else if (data[i].type == 'vegetable') {
-        typeVegetable.push(data[i].type);
-    } else if (data[i].type == 'user') {
-        typeUser.push(data[i].type);
-    }
-};
-console.log(typeAnimal);
-console.log(typeVegetable);
-console.log(typeUser);
-
-
-//Mostrare le icone con i value del select
-select.addEventListener('click', function() {
-        let eleType = this.value;
-
-        for (let i = 0; i < typeAll.length; i++) {
-        if (eleType == typeAll[i]) {
-            typeAll[i].classList.remove('hidden');
-            // typeAnimal[i].classList.add('hidden');
-            // typeVegetable[i].classList.add('hidden');
-            // typeUser[i].classList.add('hidden');
-			console.log('Hai selezionato All')
-        } else if (eleType == 'Animal') {
-            typeAnimal[i].classList.remove('hidden');
-            typeAll[i].classList.add('hidden');
-            typeVegetable[i].classList.add('hidden');
-            typeUser[i].classList.add('hidden');
-			console.log('Hai selezionato Animal')
-        } else if (eleType == 'Vegetable') {
-            typeVegetable[i].classList.remove('hidden');
-            typeAll[i].classList.add('hidden');
-            typeAnimal[i].classList.add('hidden');
-            typeUser[i].classList.add('hidden');
-			console.log('Hai selezionato Vegetable')
-        } else if (eleType == 'User') {
-            typeUser[i].classList.remove('hidden');
-            typeAll[i].classList.add('hidden');
-            typeAnimal[i].classList.add('hidden');
-            typeVegetable[i].classList.add('hidden');
-			console.log('Hai selezionato User')
-            }
-        }
-    }
-);
 
 //BONUS 1
 //Crea funzione genera numeri random da 0 a 15, ma devono andare da 0 a 9 e poi da A a F 
 
-function getRandom(max, min) {
-	return Math.floor(Math.random() * (max - min  + 1)) + 1;
+//Crea un codice hex per ogni elemento, non devi cambiare il color originale
+function getRandom(min, max) {
+	return Math.floor(Math.random() * (max - min  + 1)) + min;
 }
 
 //Creazione numeri e lettere
 function hexaFunction() {
+	// data.forEach(element => element.color = getRandom())
+	const randomNumber = [];
+	let hexNum = '';
 	for (let i=0; i<6; i++) {
-		let hexNum = getRandom(15, 0) //genera numero da 0 a 15
-		if (hexNum <10) { //se da 0 a 9, lo pusha nell'array
-			randomNumber.push(getRandom(15, 0));
+		hexNum = getRandom(0, 15) //genera numero da 0 a 15
+		 if (hexNum <10) { //se da 0 a 9, lo pusha nell'array
+			randomNumber.push(hexNum);
 		} else if (hexNum == 10 ){ //dal 10 al 15 prima cambia
 			hexNum = 'A'; randomNumber.push(hexNum);
 		} else if (hexNum == 11 ){
@@ -233,4 +209,6 @@ function hexaFunction() {
 			hexNum = 'F'; randomNumber.push(hexNum);
 		}
 	}
+	const hexacode = `#${randomNumber.join("")}`;  //creo la stringa hexacode
+	console.log(hexacode)
 }
