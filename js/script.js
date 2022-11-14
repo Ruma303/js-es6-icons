@@ -123,8 +123,8 @@ const data = [
 
 renderIcons(data, mainContainer); //parametri in quanto voglio riutilizzare la funzione
 populateSelect(data, eleSelect); 
-hexaFunction();
-
+randomizeColor(data);
+hexaFunction(data);
 
 
 //Mostrare le icone con i value del select
@@ -154,7 +154,6 @@ function renderIcons(arrData, mainContainer){
     const eleIco = document.createElement('i');
     //aggiorno le classi del tag i aggiungendo le classi delle icone
     eleIco.className = `${element.family} ${element.prefix}${element.name}`
-	//eleIco.style.color = `${hexacode}` //Colore per ogni icona randomico
     eleBox.append(eleIco); //appendo il tag i al container genitore
     
     //creare il nome per ogni icona
@@ -164,34 +163,27 @@ function renderIcons(arrData, mainContainer){
     }
 )};
 
-//Creo un'array per ogni tipo di elementi trovati nell'oggetto
-function populateSelect(data, eleSelect) {
-	const arrTypes = []//popoliamo l'array per ogni tipo di obj che troviamo dinamicamente
-	//se il tipo NON è incluso, pushiamo
-	data.forEach(element => arrTypes.includes(element.type) ? '' : arrTypes.push(element.type));
-	console.log(arrTypes)
-	//BONUS 2 aggiungere le option dinamicamente
-	arrTypes.forEach(type => eleSelect.innerHTML += `<option value="${type}">${type}</option>`)
+//BONUS 1 colori random per ogni icona
+function randomizeColor(data) {
+	data.forEach(objIcon => objIcon.color = hexaFunction());
 }
 
 
-
-
-
-
-
-//BONUS 1
-//Crea funzione genera numeri random da 0 a 15, ma devono andare da 0 a 9 e poi da A a F 
+//Creazione numeri e lettere
+function hexaFunction() {
+	const chars='O123456789ABCDEF';
+	let color = '#';
+	for (let i=0; i<6; i++) {
+		color += chars[getRandom(0,15)];
+	}
+	return color;}
 
 //Crea un codice hex per ogni elemento, non devi cambiare il color originale
 function getRandom(min, max) {
 	return Math.floor(Math.random() * (max - min  + 1)) + min;
 }
 
-//Creazione numeri e lettere
-function hexaFunction() {
-	// data.forEach(element => element.color = getRandom())
-	const randomNumber = [];
+	/*const randomNumber = [];
 	let hexNum = '';
 	for (let i=0; i<6; i++) {
 		hexNum = getRandom(0, 15) //genera numero da 0 a 15
@@ -210,7 +202,22 @@ function hexaFunction() {
 		} else if (hexNum == 15 ){
 			hexNum = 'F'; randomNumber.push(hexNum);
 		}
-	}
+	} 
 	const hexacode = `#${randomNumber.join("")}`;  //creo la stringa hexacode
-	console.log(hexacode)
+	console.log(hexacode)*/
+
+
+
+
+//Creo un'array per ogni tipo di elementi trovati nell'oggetto
+function populateSelect(data, eleSelect) {
+	const arrTypes = []//popoliamo l'array per ogni tipo di obj che troviamo dinamicamente
+	//se il tipo NON è incluso, pushiamo
+	data.forEach(element => arrTypes.includes(element.type) ? '' : arrTypes.push(element.type));
+	console.log(arrTypes)
+
+	//BONUS 2 aggiungere le option dinamicamente
+	arrTypes.forEach(type => eleSelect.innerHTML += `<option value="${type}">${type}</option>`)
 }
+
+
