@@ -167,15 +167,17 @@ function renderIcons(arrData, mainContainer){
 //Creo un'array per ogni tipo di elementi trovati nell'oggetto
 function populateSelect(data, eleSelect) {
 	const arrTypes = []//popoliamo l'array per ogni tipo di obj che troviamo dinamicamente
-	data.forEach(element => {
-		//se il tipo NON è incluso, pushiamo
-		if (!data.includes(element.type)) {
-			data.push(element.type);
-		}
-	});
+	//se il tipo NON è incluso, pushiamo
+	data.forEach(element => arrTypes.includes(element.type) ? '' : arrTypes.push(element.type));
+	console.log(arrTypes)
+	//BONUS 2 aggiungere le option dinamicamente
+	arrTypes.forEach(type => eleSelect.innerHTML += `<option value="${type}">${type}</option>`)
 }
-//BONUS 2 aggiungere le option per ciascun tipo
-data.forEach(type=> eleSelect.innerHTML = `<option value="${type}">${type}</option>`)
+
+
+
+
+
 
 
 //BONUS 1
